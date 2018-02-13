@@ -2,11 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 
 module.exports = {
     entry: {
         app: './src/index.js',
-        // print: './src/print.js'
     },
     devtool: 'inline-source-map',
     output: {
@@ -24,6 +25,7 @@ module.exports = {
             title: 'Development'
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new UglifyJSPlugin()
     ],
 };
