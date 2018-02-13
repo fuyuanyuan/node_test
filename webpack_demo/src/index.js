@@ -1,10 +1,25 @@
-import _ from 'lodash'
+import _ from 'lodash';
+import './style.css';
+import img from './img.jpg';
+import Data from './data.xml';
+import Dataj from './data.json';
 
 function component() {
     var element = document.createElement('div');
 
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
+    // Lodash，现在由此脚本导入
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+    //css 添加类
+    element.classList.add('hello');
+
+    // 将图像添加到我们现有的 div。
+    var myimg = new Image();
+    myimg.src = img;
+    element.appendChild(myimg);
+
+    console.log(Data);
+    console.log(Dataj);
 
     return element;
 }
