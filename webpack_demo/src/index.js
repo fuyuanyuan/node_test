@@ -1,39 +1,44 @@
 import _ from 'lodash';
-// import printMe from './print.js';
 
-// function component() {
-//     var element = document.createElement('div');
-//     var btn = document.createElement('button');
-
-//     // Lodash，现在由此脚本导入
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-//     btn.innerHTML = 'Click me and check the console!';
-//     btn.onclick = printMe;
-//     element.appendChild(btn);
-
-//     return element;
-// }
-
-// document.body.appendChild(component());
-
-
-
-
-function getComponent() {
+function component() {
     var element = document.createElement('div');
+    var button = document.createElement('button');
+    var br = document.createElement('br');
 
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
-        var element = document.createElement('div');
-        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-        return element;
+    button.innerHTML = 'Click me and look at the console!';
+    element.appendChild(br);
+    element.appendChild(button);
 
-    }).catch(error => 'An error occurred while loading the component');
+    // Note that because a network request is involved, some indication
+    // of loading would need to be shown in a production-level site/app.
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+        var print = module.default;
+
+        print();
+    });
+
+    return element;
 }
 
 document.body.appendChild(component());
-getComponent().then(component => {
-    document.body.appendChild(component);
-})
+
+
+
+
+// function getComponent() {
+//     var element = document.createElement('div');
+
+//     // Lodash, now imported by this script
+//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//     return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+//         var element = document.createElement('div');
+//         element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//         return element;
+
+//     }).catch(error => 'An error occurred while loading the component');
+// }
+
+// document.body.appendChild(component());
+// getComponent().then(component => {
+//     document.body.appendChild(component);
+// })
