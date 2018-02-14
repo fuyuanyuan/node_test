@@ -10,16 +10,15 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),//清空目录
         new HtmlWebpackPlugin({ //生成html文件
-            title: 'Production',
-            path:"./"
+            title: 'Caching',
         }),
         new webpack.optimize.CommonsChunkPlugin({//防止重复
-            name: 'common' // 指定公共 bundle 的名称。
+            name: 'manifest' // 指定公共 bundle 的名称。
         })
     ],
     output: {
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js',
+        filename: '[name].[chunkhash].js',
+        chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: './'
     }
