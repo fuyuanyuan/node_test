@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import {print_str} from './print.js';
+import 'babel-polyfill';
 
 function component() {
     var element = document.createElement('div');
